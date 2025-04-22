@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Barra de Navegación -->
+    <nav class="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold text-indigo-500">TubeApp</div>
+        <div class="flex items-center gap-4">
+            <input type="text" id="searchInput" placeholder="Buscar videos..." class="px-4 py-2 rounded-lg text-black focus:outline-none">
+            <button id="searchButton" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg">Buscar</button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="relative w-full md:w-1/2">
+                    <!-- Search Box can be placed here -->
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="prevPageBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg disabled:bg-indigo-300">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span id="page-number" class="font-medium">Página 1</span>
+                    <button id="nextPageBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg disabled:bg-indigo-300">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Anuncio 1 (Antes de la lista de videos) -->
+        <div class="my-8 p-6 bg-gray-800 rounded-xl shadow-xl text-center">
+            <h2 class="text-2xl font-bold text-indigo-500 mb-4">¡Anuncio Especial!</h2>
+            <p class="text-gray-400 mb-4">¡Obtén un descuento del 20% en tu próxima compra de productos premium!</p>
+            <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg">Más Información</button>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Video List View -->
+            <div id="video-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Videos will be loaded here -->
+            </div>
+
+            <!-- Anuncio 2 (Después de la lista de videos) -->
+            <div class="my-8 p-6 bg-gray-800 rounded-xl shadow-xl text-center">
+                <h2 class="text-2xl font-bold text-indigo-500 mb-4">¡No te Pierdas Esto!</h2>
+                <p class="text-gray-400 mb-4">Descubre más contenido exclusivo con nuestra suscripción premium.</p>
+                <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg">Suscríbete Ahora</button>
+            </div>
+
+            <!-- Video Detail View -->
+            <div id="video-detail" class="hidden">
+                <button id="backBtn" class="mb-4 px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+                
+                <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe id="video-iframe" class="w-full h-96" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h2 id="video-title" class="text-2xl font-bold mb-2"></h2>
+                        <div class="flex flex-wrap gap-4 mb-4 text-gray-400">
+                            <span id="video-duration" class="flex items-center gap-1">
+                                <i class="far fa-clock"></i>
+                                <span></span>
+                            </span>
+                            <span id="video-views" class="flex items-center gap-1">
+                                <i class="far fa-eye"></i>
+                                <span></span>
+                            </span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="font-semibold mb-2">Etiquetas:</h3>
+                            <div id="video-tags" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold mb-2">Galería:</h3>
+                            <div id="thumb-gallery" class="grid grid-cols-4 sm:grid-cols-8 gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Categories Section -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-center text-indigo-500">Categorías Populares</h2>
+            <div id="api-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+        </section>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-500"></div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
